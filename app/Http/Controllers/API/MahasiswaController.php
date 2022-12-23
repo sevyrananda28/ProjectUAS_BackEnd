@@ -120,46 +120,7 @@ class MahasiswaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        try {
-            $request->validate([
-                'nama'          => 'required',
-                'nim'           => 'required',
-                'alamat'        => 'required',
-                'prodi'         => 'required',
-                'email'         => 'required',
-                'ttl'           => 'required',
-                'jk'            => 'required',
-                'totalsks'      => 'required',
-                'perolehansks'  => 'required',
-                'ipk'           => 'required',
-            ]);
-
-
-            $mahasiswa = Mahasiswa::findOrFail($id);
-
-            $mahasiswa->update([
-                'nama'          => $request->nama,
-                'nim'           => $request->nim,
-                'alamat'        => $request->alamat,
-                'prodi'         => $request->prodi,
-                'email'         => $request->email,
-                'ttl'           => $request->ttl,
-                'jk'            => $request->jk,
-                'totalsks'      => $request->totalsks,
-                'perolehansks'  => $request->perolehansks,
-                'ipk'           => $request->ipk
-            ]);
-
-            $data = Mahasiswa::where('id', '=', $mahasiswa->id)->get();
-
-            if ($data) {
-                return ApiFormatter::createApi(200, 'Success', $data);
-            } else {
-                return ApiFormatter::createApi(400, 'Failed');
-            }
-        } catch (Exception $error) {
-            return ApiFormatter::createApi(400, 'Failed');
-        }
+        
     }
 
     /**
