@@ -170,6 +170,18 @@ class MahasiswaController extends Controller
      */
     public function destroy($id)
     {
-        
+        try {
+            $mahasiswa = Mahasiswa::findOrFail($id);
+
+            $data = $mahasiswa->delete();
+
+            if ($data) {
+                return ApiFormatter::createApi(200, 'Success Destroy data');
+            } else {
+                return ApiFormatter::createApi(400, 'Failed');
+            }
+        } catch (Exception $error) {
+            return ApiFormatter::createApi(400, 'Failed');
+        }
     }
 }
