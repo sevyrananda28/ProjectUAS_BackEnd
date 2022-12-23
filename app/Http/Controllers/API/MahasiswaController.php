@@ -17,7 +17,13 @@ class MahasiswaController extends Controller
      */
     public function index()
     {
-        
+        $data = Mahasiswa::all();
+
+        if ($data) {
+            return ApiFormatter::createApi(200, 'Success', $data);
+        } else {
+            return ApiFormatter::createApi(400, 'Failed');
+        }
     }
 
     /**
