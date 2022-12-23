@@ -91,7 +91,13 @@ class MahasiswaController extends Controller
      */
     public function show($id)
     {
-        
+        $data = Mahasiswa::where('id', '=', $id)->get();
+
+        if ($data) {
+            return ApiFormatter::createApi(200, 'Success', $data);
+        } else {
+            return ApiFormatter::createApi(400, 'Failed');
+        }
     }
 
     /**
