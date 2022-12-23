@@ -44,7 +44,32 @@ class MahasiswaController extends Controller
      */
     public function store(Request $request)
     {
-        
+        try {
+            $request->validate([
+                'nama'          => 'required',
+                'nim'           => 'required',
+                'alamat'        => 'required',
+                'prodi'         => 'required',
+                'email'         => 'required',
+                'ttl'           => 'required',
+                'jk'            => 'required',
+                'totalsks'      => 'required',
+                'perolehansks'  => 'required',
+                'ipk'           => 'required',
+            ]);
+
+            $mahasiswa = Mahasiswa::create([
+                'nama'          => $request->nama,
+                'nim'           => $request->nim,
+                'alamat'        => $request->alamat,
+                'prodi'         => $request->prodi,
+                'email'         => $request->email,
+                'ttl'           => $request->ttl,
+                'jk'            => $request->jk,
+                'totalsks'      => $request->totalsks,
+                'perolehansks'  => $request->perolehansks,
+                'ipk'           => $request->ipk
+            ]);
 
             $data = Mahasiswa::where('id', '=', $mahasiswa->id)->get();
 
